@@ -28,5 +28,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3  # Utilise une action GitHub pour déployer sur GitHub Pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub fournit automatiquement ce token
+          github_token: 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  # GitHub fournit automatiquement ce token
           publish_dir: ./build  # Le répertoire à déployer est le répertoire de build
