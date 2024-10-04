@@ -1,0 +1,32 @@
+name: Deploy React App to GitHub Pages
+
+# Exécute le workflow chaque fois qu'un push est fait sur la branche main
+on:
+  push:
+    branches:
+      - main  # Changez cela si vous utilisez une autre branche
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Récupère le code du repository
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # Configure Node.js
+        with:
+          node-version: '16'  # Utilisez la version de Node.js que votre projet nécessite
+
+      - name: Install dependencies
+        run: npm install  # Installe les dépendances du projet
+
+      - name: Build project
+        run: npm run build  # Construit le projet React
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  # Utilise une action GitHub pour déployer sur GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub fournit automatiquement ce token
+          publish_dir: ./build  # Le répertoire à déployer est le répertoire de build
